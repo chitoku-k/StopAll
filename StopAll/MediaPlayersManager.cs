@@ -8,22 +8,22 @@ namespace StopAll
 {
     public class MediaPlayersManager
     {
-        private static readonly Dictionary<string, Type> PlayerTypes = new Dictionary<string, Type>
+        private static readonly Dictionary<string, Func<MediaPlayerBase>> PlayerConstructors = new Dictionary<string, Func<MediaPlayerBase>>
         {
-            { "wmplayer", typeof(WindowsMediaPlayer) },
-            { "iTunes", typeof(iTunes) },
-            { "x-APPLICATION", typeof(XApplication) },
-            { "x-APPLISMO", typeof(LismoPort) },
-            { "foobar2000", typeof(NowPlayingLib.Foobar2000) }
+            { "wmplayer",      () => new WindowsMediaPlayer() },
+            { "iTunes",        () => new iTunes() },
+            { "x-APPLICATION", () => new XApplication() },
+            { "x-APPLISMO",    () => new LismoPort() },
+            { "foobar2000",    () => new NowPlayingLib.Foobar2000() }
         };
 
         public static void PauseAll()
         {
-            foreach (var t in Process.GetProcesses().Select(x => x.ProcessName).Intersect(PlayerTypes.Keys).Select(x => PlayerTypes[x]))
+            foreach (var func in Process.GetProcesses().Select(x => x.ProcessName).Intersect(PlayerConstructors.Keys).Select(x => PlayerConstructors[x]))
             {
                 try
                 {
-                    using (var player = Activator.CreateInstance(t) as MediaPlayerBase)
+                    using (var player = func())
                     {
                         player.Pause();
                     }
