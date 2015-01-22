@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace StopAll
 {
@@ -19,17 +20,17 @@ namespace StopAll
 
         public static void PauseAll()
         {
-            foreach (var func in Process.GetProcesses().Select(x => x.ProcessName).Intersect(PlayerConstructors.Keys).Select(x => PlayerConstructors[x]))
+            Parallel.ForEach(Process.GetProcesses().Select(x => x.ProcessName).Intersect(PlayerConstructors.Keys), processName =>
             {
                 try
                 {
-                    using (var player = func())
+                    using (var player = PlayerConstructors[processName]())
                     {
                         player.Pause();
                     }
                 }
                 catch { }
-            }
+            });
         }
     }
 }
