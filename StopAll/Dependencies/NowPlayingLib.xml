@@ -24,15 +24,17 @@
             指定したパスからすべてのバイトを非同期に読み取り、新しいストリームに書き込みます。
             </summary>
             <param name="path">ファイルの相対パスまたは絶対パス。</param>
+            <returns>
             <para>非同期操作を表すタスク オブジェクト。</para>
             <para>タスク オブジェクトの <c>Result</c> プロパティは、<see cref="T:System.IO.Stream"/> を返します。</para>
+            </returns>
         </member>
         <member name="M:NowPlayingLib.MediaPlayerBase.GetFileInfo(System.String)">
             <summary>
             指定したパスが null 参照 (Visual Basic では Nothing) または空でない場合、<see cref="T:System.IO.FileInfo"/> クラスの新しいインスタンスを初期化します。
             </summary>
-            <param name="path"></param>
-            <returns></returns>
+            <param name="path">パス。</param>
+            <returns>作成された <see cref="T:System.IO.FileInfo"/> クラス、または null 参照 (Visual Basic では Nothing)。</returns>
         </member>
         <member name="M:NowPlayingLib.MediaPlayerBase.Finalize">
             <summary>
@@ -54,8 +56,10 @@
             <summary>
             非同期操作として現在音楽プレーヤーで再生している曲を取得します。
             </summary>
+            <returns>
             <para>非同期操作を表すタスク オブジェクト。</para>
             <para>タスク オブジェクトの <c>Result</c> プロパティは、<see cref="T:NowPlayingLib.MediaItem"/> を返します。</para>
+            </returns>
         </member>
         <member name="M:NowPlayingLib.MediaPlayerBase.Play">
             <summary>
@@ -120,6 +124,11 @@
         <member name="E:NowPlayingLib.INotifyPlayerStateChanged.Closed">
             <summary>
             音楽プレーヤーが終了された時に発生します。
+            </summary>
+        </member>
+        <member name="F:NowPlayingLib.Foobar2000.ProcessName">
+            <summary>
+            foobar2000 が使用するプロセス名。
             </summary>
         </member>
         <member name="M:NowPlayingLib.Foobar2000.#ctor">
@@ -1060,6 +1069,11 @@
             iTunes の機能を提供します。
             </summary>
         </member>
+        <member name="F:NowPlayingLib.iTunes.ProcessName">
+            <summary>
+            iTunes が使用するプロセス名。
+            </summary>
+        </member>
         <member name="M:NowPlayingLib.iTunes.#ctor">
             <summary>
             <see cref="T:NowPlayingLib.iTunes"/> の新しいインスタンスを作成し、iTunes を初期化します。
@@ -1240,9 +1254,14 @@
             SonyMediaPlayerX の現在の再生位置を取得または設定します。
             </summary>
         </member>
+        <member name="F:NowPlayingLib.LismoPort.ProcessName">
+            <summary>
+            LISMO Port (x-アプリ for LISMO) が使用するプロセス名。
+            </summary>
+        </member>
         <member name="M:NowPlayingLib.LismoPort.#ctor">
             <summary>
-            <see cref="T:NowPlayingLib.iTunes"/> の新しいインスタンスを初期化します。
+            <see cref="T:NowPlayingLib.LismoPort"/> の新しいインスタンスを初期化します。
             </summary>
         </member>
         <member name="P:NowPlayingLib.LismoPort.Player">
@@ -1435,7 +1454,7 @@
             メディア オブジェクトを指定して曲情報を取得します。
             </summary>
             <param name="media">メディア オブジェクト。</param>
-            <returns>データベースから得られた</returns>
+            <returns>データベースから得られた曲情報。</returns>
         </member>
         <member name="T:NowPlayingLib.Win32.INTERNET_CACHE_ENTRY_INFO">
             <summary>
@@ -1544,6 +1563,11 @@
             Windows Media Player の機能を提供します。
             </summary>
         </member>
+        <member name="F:NowPlayingLib.WindowsMediaPlayer.ProcessName">
+            <summary>
+            Windows Media Player が使用するプロセス名。
+            </summary>
+        </member>
         <member name="M:NowPlayingLib.WindowsMediaPlayer.#ctor">
             <summary>
             <see cref="T:NowPlayingLib.WindowsMediaPlayer"/> の新しいインスタンスを作成し、Windows Media Player を初期化します。
@@ -1645,6 +1669,11 @@
         <member name="T:NowPlayingLib.XApplication">
             <summary>
             x-アプリ の機能を提供します。
+            </summary>
+        </member>
+        <member name="F:NowPlayingLib.XApplication.ProcessName">
+            <summary>
+            x-アプリ が使用するプロセス名。
             </summary>
         </member>
         <member name="M:NowPlayingLib.XApplication.#ctor">
